@@ -1,8 +1,8 @@
 class Rad < Formula
   desc "CLI tool for JSON API query scripting using RSL (Rad Scripting Language)"
   homepage "https://github.com/AlexanderTerp/rad"
-  url "https://github.com/AlexanderTerp/rad/archive/0.1.4.tar.gz"
-  sha256 "ac1e52c6b12ed3d87280dbb8ed32156f81ccd7398f6c01697e9e24241fd7e1aa"
+  url "https://github.com/AlexanderTerp/rad/archive/0.1.5.tar.gz"
+  sha256 "8cc1f2f5894ca36d88ec8a20662dac0fe91306d224edbcc14777977f5abf09c8"
   
   depends_on "go" => :build
   
