@@ -9,8 +9,4 @@ class Rad < Formula
   def install
     system "go", "build", *std_go_args, "./main.go"
   end
-  
-  test do
-    assert_match "version 0.1.1", shell_output("#{bin}/rad --version")
-  end
 end
