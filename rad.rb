@@ -1,8 +1,8 @@
 class Rad < Formula
   desc "A lightweight, modern CLI tool & scripting language that's familiar, clean, and readable."
   homepage "https://github.com/amterp/rad"
-  url "https://github.com/amterp/rad/archive/0.5.31.tar.gz"
-  sha256 "cd1cb2459a7dc63e2e366d425b3f942e5fb95c8ad5a5f2424f38797f25e78ba6"
+  url "https://github.com/amterp/rad/archive/0.5.32.tar.gz"
+  sha256 "349150a738847ce2b8b60ceab4745d48d680a675bd1996d0576930bd77c9d442"
 
   depends_on "go" => :build
 
