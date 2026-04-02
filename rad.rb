@@ -2,7 +2,7 @@ class Rad < Formula
   desc "Modern CLI scripts made easy"
   homepage "https://amterp.dev/rad/"
   url "https://github.com/amterp/rad/archive/refs/tags/v0.9.1.tar.gz"
-  sha256 "54e9cbd664d24cbb676d78ca51b13ac475074586c327c77bc7154dfef0edf4e9"
+  sha256 "430e9557b18b53bbd563c0c4a5c5f80a0bc02526decd8133768cc78d1d4b13ed"
   license "Apache-2.0"
   head "https://github.com/amterp/rad.git", branch: "main"
 
@@ -11,7 +11,7 @@ class Rad < Formula
   def install
     ENV["CGO_ENABLED"] = "1" if OS.linux? && Hardware::CPU.arm?
     system "go", "build", *std_go_args(ldflags: "-s -w")
-    system "go", "build", *std_go_args(ldflags: "-s -w", output: bin/"radls"), "./lsp-server"
+    system "go", "build", *std_go_args(ldflags: "-s -w", output: bin/"radls"), "./radls"
   end
 
   test do
