@@ -1,13 +1,30 @@
 class Rad < Formula
-  desc "A modern CLI scripting language with built-in language server"
-  homepage "https://github.com/amterp/rad"
-  url "https://github.com/amterp/rad/archive/v0.9.0.tar.gz"
+  desc "Modern CLI scripts made easy"
+  homepage "https://amterp.dev/rad/"
+  url "https://github.com/amterp/rad/archive/refs/tags/v0.9.0.tar.gz"
   sha256 "1c602c9d5a186529812b8187dcb23efdf07d1019aea2b9335420ac2c8e82a81c"
+  license "Apache-2.0"
+  head "https://github.com/amterp/rad.git", branch: "main"
 
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args, "./main.go"
-    system "go", "build", *std_go_args(output: bin/"radls"), "./lsp-server"
+    ENV["CGO_ENABLED"] = "1" if OS.linux? && Hardware::CPU.arm?
+    system "go", "build", *std_go_args(ldflags: "-s -w")
+    system "go", "build", *std_go_args(ldflags: "-s -w", output: bin/"radls"), "./radls"
+  end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/rad --version")
+    (testpath/"test").write <<~SHELL
+      #!/usr/bin/env rad
+      args:
+        times int = 1
+      for _ in range(times):
+        print("Hello, Homebrew!")
+    SHELL
+    chmod "+x", testpath/"test"
+    assert_match "Hello, Homebrew!\nHello, Homebrew!", shell_output("#{testpath}/test 2")
+    assert_match "Spinning up Rad LSP server", shell_output("#{bin}/radls 2>&1", 1)
   end
 end
