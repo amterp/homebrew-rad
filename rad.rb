@@ -11,7 +11,7 @@ class Rad < Formula
   def install
     ENV["CGO_ENABLED"] = "1" if OS.linux? && Hardware::CPU.arm?
     system "go", "build", *std_go_args(ldflags: "-s -w")
-    system "go", "build", *std_go_args(ldflags: "-s -w", output: bin/"radls"), "./lsp-server"
+    system "go", "build", *std_go_args(ldflags: "-s -w", output: bin/"radls"), "./radls"
   end
 
   test do
